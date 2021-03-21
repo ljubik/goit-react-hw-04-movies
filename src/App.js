@@ -1,42 +1,43 @@
-import "./App.css";
-import React, { Component } from "react";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import Footer from "./components/Footer/Footer";
-import db from "./db/db.json";
+import React, { Component } from 'react';
+import { Route } from 'react-router';
+import ApiService from './Service/ApiService';
+import './App.css';
 
+const apiService = new ApiService();
 
-class App extends Component {
+class MovieFinder extends Component {
   state = {
-    name: "",
+    movies: [],
+    location: '/'
   };
 
-  addContact = (el) => {
-    const { contacts } = this.state;
-    const twin = contacts.some((c) => c.name === el.name);
-    twin
-      ? alert(`Alarma`)
-      : this.setState((prev) => {
-          return {
-            contacts: [...prev.contacts, el],
-          };
-        });
+  componentDidMount() {
+    apiService.fetchPopularFilms().then(movies => {
+      this.setState({movies})
+    });
   };
 
-  getValue = (el) => {
-    this.setState({ [el.name]: el.value });
+  onChangePath = (path) => {
+    this.setState({location: path});
   };
 
   render() {
-    const { addContact, getValue } = this;
     return (
       <>
-      <Header />
-      <Main db={db} addContact={addContact} getValue={getValue}/>
-      <Footer />
-    </>
-    );
-  }
-}
+        
+          <Route exact path="/" 
+            
+          />
+          <Route exact path="/movies" 
 
-export default App;
+          />
+          <Route path="/movies/:movieId" 
+
+          />
+  
+      </>
+    );
+  };
+};
+
+export default MovieFinder;
