@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,SACI,iBACJ,CAEA,GACI,QAAS,CACT,eACJ","file":"main.9f1ad955.chunk.css","sourcesContent":["div#root {\n    text-align: center;\n}\n\nul {\n    margin: 0;\n    list-style: none;\n}"]}
