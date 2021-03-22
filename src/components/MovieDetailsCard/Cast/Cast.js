@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ApiService from '../../utils/ApiService';
+import ApiService from '../../../Service/ApiService';
 
 import profilePhotoPlaceholder from './profilePhotoPlaceholder.webp';
 import styles from './Cast.module.css';
