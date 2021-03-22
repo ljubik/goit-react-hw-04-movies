@@ -1,8 +1,8 @@
 {
-  "name": "my-react-starter",
+  "name": "goit-react-hw-04-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ljubik.github.io/my-react-starter/",
+  "homepage": "https://ljubik.github.io/goit-react-hw-04-movies/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -13,6 +13,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-loader-spinner": "^4.0.0",
     "react-scripts": "4.0.2",
     "react-toastify": "^7.0.3",

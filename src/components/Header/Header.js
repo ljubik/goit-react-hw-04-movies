@@ -1,15 +1,26 @@
-import React from "react";
-import style from "./Header.module.css";
+import React, { Component } from 'react';
+import Navigation from './Navigation/Navigation';
 
+import styles from './Header.module.css';
 
-const Header = function () {
-  return (
-    <header className={style.header}>
-      <nav>
-        <a href="cil.org.ua">Header</a>
-      </nav>
-    </header>
-  );
+class Header extends Component {
+    state = {}
+
+    componentDidMount() {
+        if (this.props.props.match.url.length <= 8) {
+            this.props.props.onChangePath(this.props.props.match.url);
+        };
+    };
+
+    render() {
+        return (
+            <header className={styles.header}>
+                <Navigation 
+                    props={this.props}
+                />
+            </header>
+        );
+    };
 };
 
 export default Header;
