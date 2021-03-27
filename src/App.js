@@ -1,59 +1,66 @@
 import React, { Component, lazy, Suspense } from 'react';
-import { Route } from 'react-router';
-import LoaderSpinner from './components/Loader/Loader';
-
-
-import ApiService from './Service/ApiService';
+import { Switch, Route } from 'react-router-dom';
+import routes from './routes';
+import Shows from './Page/Shows';
+import NotFound from './Page/NotFound';
+import Header from './components/Header/Header';
+import Layout from './components/Layout/Layout';
+import MoviesPage from './Page/MoviesPage';
+import MovieDetailsCard from './Page/MovieDetailsCard';
+import Footer from './components/Footer/Footer';
 import './App.css';
+import LoaderSpinner from "./components/Loader/Loader";
+const HomePage = lazy(() => import('./Page/Shows'));
+// const MoviesPage = lazy(() => import('./Page/MoviesPage'));
 
-const apiService = new ApiService();
-const HomePage = lazy(() => import('./Page/HomePage'));
-const Movies = lazy(() => import('./Page/Movies'));
-const MovieDetailsPage = lazy(() => import('./Page/MovieDetailsPage'));
 
-class MovieFind extends Component {
-  state = {
-    movies: [],
-    location: '/'
-  };
 
-  componentDidMount() {
-    apiService.fetchPopularFilms().then(movies => {
-      this.setState({movies})
-    });
-  };
-
-  onChangePath = (path) => {
-    this.setState({location: path});
-  };
-
-  render() {
-    return (
-      <>
-        <Suspense fallback={<LoaderSpinner />}>
-          <Route exact path="/" render={props => 
-            <HomePage 
-              {...props} 
-              movies={this.state.movies}
-              onChangePath={this.onChangePath}
-            />}
-          />
-          <Route exact path="/movies" render={props =>
-            <Movies 
-              {...props}
-              onChangePath={this.onChangePath} 
-            />} 
-          />
-          <Route path="/movies/:movieId" render={props =>
-            <MovieDetailsPage 
-              {...props} 
-              prevLocation={this.state.location}
-            />}
-          />
-        </Suspense>
+class App extends Component {
+    state = {
+      name: "",
+      location: ""
+    };
+   
+    onChangePath = (path) => {
+      this.setState({location: path});
+    };
+  
+    render() {
+      
+      return (
+        <>
+        <Layout>
+           
+            <Header />
+            <Suspense fallback={"Waiting..."}>
+            <Switch>
+                <Route exact path="/" render={props => 
+                    <HomePage 
+                    {...props} 
+                    
+                    />}
+                />
+                {/* <Route exact path={routes.movies} render={props => 
+                    <MoviesPage 
+                    {...props} 
+                    onChangePath={this.onChangePath}
+                    />}
+                /> */}
+                <Route path={routes.home} exact component={Shows} />
+        <Route path={routes.movies} exact component={MoviesPage} />
+        <Route path={routes.MovieDetailsPage} component={MovieDetailsCard} />
+        <Route component={NotFound} />
+                <Route exact path={routes.movies} component={MoviesPage} />
+                <Route exact path={routes.MovieDetailsPage} component={MovieDetailsCard} />
+                <Route component={NotFound} />
+                {/* <Redirect to="/" /> */}
+            </Switch>
+            </Suspense>
+            <Footer />
+        </Layout>
       </>
-    );
-  };
-};
-
-export default MovieFind;
+      );
+    }
+  }
+  
+  export default App;

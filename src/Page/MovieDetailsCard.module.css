@@ -1,0 +1,16 @@
+.posterImg {
+  width: 300px;
+  height: auto;
+}
+
+.posterWrap {
+  width: 300px;
+}
+
+.description {
+  padding-left: 10px;
+}
+
+.wrapPage {
+  display: flex;
+}
