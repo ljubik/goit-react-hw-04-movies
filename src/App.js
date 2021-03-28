@@ -47,11 +47,8 @@ class App extends Component {
                     />}
                 /> */}
                 <Route path={routes.home} exact component={Shows} />
-        <Route path={routes.movies} exact component={MoviesPage} />
-        <Route path={routes.MovieDetailsPage} component={MovieDetailsCard} />
-        <Route component={NotFound} />
-                <Route exact path={routes.movies} component={MoviesPage} />
-                <Route exact path={routes.MovieDetailsPage} component={MovieDetailsCard} />
+                <Route path={routes.movies} exact component={MoviesPage} />
+                <Route path={routes.MovieDetailsPage} component={MovieDetailsCard} />
                 <Route component={NotFound} />
                 {/* <Redirect to="/" /> */}
             </Switch>

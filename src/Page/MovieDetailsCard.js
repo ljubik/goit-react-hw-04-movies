@@ -11,6 +11,7 @@ class MovieDetailsPage extends Component {
     state = {
         show: null,
         poster_path: noPoster,
+        pathname: "/"
     }
 
     componentDidMount() {
@@ -21,9 +22,12 @@ class MovieDetailsPage extends Component {
     }
 
     handleGoBack = () => {
+        console.log("location.state", this.props.location.state)
+        console.log("location.from", this.props.location.state.from)
         if (this.props.location.state && this.props.location.state.from) {
-            this.props.history.push(this.props.location.state.from);
+            this.props.history.push(this.state.pathname);
         }
+        
     }
 
     render() {
